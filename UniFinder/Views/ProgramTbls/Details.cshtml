@@ -1,0 +1,59 @@
+﻿@model UniFinder.ProgramTbl
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ProgramTbl</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProgramName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProgramName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Degree)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Degree)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.creationdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.creationdate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tradetbl.TradeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tradetbl.TradeName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProgramID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

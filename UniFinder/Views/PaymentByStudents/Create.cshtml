@@ -1,0 +1,96 @@
+﻿@model UniFinder.PaymentByStudent
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+<br />
+<br />
+<br />
+@if (TempData["lblMsg"] != null)
+{
+    <script language="javascript">
+        alert('@TempData["lblMsg"]');
+        TempData["lblMsg"] = null;
+    </script>
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>PaymentByStudent</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FormCode, "FormID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.DropDownListFor(model => model.FormCode, (SelectList)ViewBag.FormID, htmlAttributes: new { @class = "form-control", @readonly = true })
+                @Html.ValidationMessageFor(model => model.FormCode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("University", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Uni, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                @Html.ValidationMessageFor(model => model.Uni, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Program", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Program, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                @Html.ValidationMessageFor(model => model.Program, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Aptitude Charges", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.ApttCharges, new { htmlAttributes = new { @class = "form-control", @Value = "1500", @readonly = true } })
+                @Html.ValidationMessageFor(model => model.ApttCharges, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Service Charges", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.ServiceCharges, new { htmlAttributes = new { @class = "form-control", @Value = "100", @readonly = true } })
+                @Html.ValidationMessageFor(model => model.ServiceCharges, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PaymentOption, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.DropDownListFor(model => model.PaymentOption, (SelectList)ViewBag.paymentTypelist, "Please select", new { @class = "form-control searchable", @id = "ddlPayment" })
+
+                @*@Html.EditorFor(model => model.PaymentOption, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PaymentOption, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-6">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+    @*<script>
+        function checkPO() {
+            debugger;
+            var ddlPayment = $('#ddlPayment').val();
+            if (ddlPayment) {
+                return true;
+            }
+            else {
+                alert("Please select user type");
+                return false;
+            }
+        }
+    </script>*@
+}

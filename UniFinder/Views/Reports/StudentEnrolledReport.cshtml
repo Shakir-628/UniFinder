@@ -1,0 +1,60 @@
+﻿@model IEnumerable<StudentAdmissionReport_Result>
+@{
+    ViewBag.Title = "StudentEnrolledReport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Student Enrolled Report</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.StudentName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CNIC)
+        </th>
+        <th>
+            Form No
+        </th>
+        <th>
+            Aptitude Charges
+        </th>
+        <th>
+            Service Charges
+        </th>
+        <th>
+            Total Charges
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        var sum = item.ApttCharges + item.ServiceCharges;
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CNIC)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FormNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApttCharges)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ServiceCharges)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalAmount)
+            </td>
+        </tr>
+    }
+
+</table>
+

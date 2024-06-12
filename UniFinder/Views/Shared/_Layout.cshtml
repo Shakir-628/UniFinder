@@ -1,0 +1,275 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>University Finder</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="~/theme/images/favicon.png">
+    <link rel="stylesheet" href="~/theme/vendor/owl-carousel/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/theme/vendor/owl-carousel/css/owl.theme.default.min.css">
+    <link href="~/theme/css/style.css" rel="stylesheet">
+    <link href="~/Assets/css/select2.min.css" rel="stylesheet" />
+    <style>
+        .table {
+            color: black !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="sk-three-bounce">
+            <div class="sk-child sk-bounce1"></div>
+            <div class="sk-child sk-bounce2"></div>
+            <div class="sk-child sk-bounce3"></div>
+        </div>
+    </div>
+    <div id="main-wrapper">
+
+        <!--**********************************
+            Nav header start
+        ***********************************-->
+        <div class="nav-header">
+            <a href="index.html" class="brand-logo">
+                <img class="logo-abbr" src="~/theme/images/logo.png" alt="">
+                <img class="logo-compact" src="~/theme/images/logo-text.png" alt="">
+                <img class="brand-title" src="~/theme/images/logo-text.png" alt="">
+            </a>
+
+            <div class="nav-control">
+                <div class="hamburger">
+                    <span class="line"></span><span class="line"></span><span class="line"></span>
+                </div>
+            </div>
+        </div>
+        <div class="header">
+            <div class="header-content">
+                <nav class="navbar navbar-expand">
+                    <div class="collapse navbar-collapse justify-content-between">
+                        <div class="header-left">
+                        </div>
+
+                        <ul class="navbar-nav header-right">
+                            <li class="nav-item dropdown header-profile">
+                                <a class="nav-link" href="#" role="button" data-toggle="dropdown">
+                                    <i class="mdi mdi-account"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    @*<a href="#" class="dropdown-item">
+                                            <i class="icon-user"></i>
+                                            <span class="ml-2">Profile </span>
+                                        </a>*@
+                                    <a href="/Login/Logout/" class="dropdown-item">
+                                        <i class="icon-key"></i>
+                                        <span class="ml-2">Logout </span>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div class="quixnav">
+            <div class="quixnav-scroll">
+                <ul class="metismenu" id="menu">
+                    @if (Session["Usertype"].ToString() == "Admin")
+                    {
+                        <li class="nav-label first">Main Menu</li>
+                        <li>
+                            <a href="~/Dashboard/Dashboard" aria-expanded="false">
+                                <i class="icon icon-single-04"></i><span class="nav-text">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-label">University</li>
+                        <li>
+                            <a class="has-arrow" href="#" aria-expanded="false">
+                                <i class="icon icon-app-store"></i><span class="nav-text">University Master</span>
+                            </a>
+                            <ul aria-expanded="false">
+                                <li><a href="/University/Index/">University List</a></li>
+                                <li><a href="/University/Create/">Create New University</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="has-arrow" href="#" aria-expanded="false">
+                                <i class="icon icon-app-store"></i><span class="nav-text">Degree Master</span>
+                            </a>
+                            <ul aria-expanded="false">
+                                <li><a href="/Degrees/Index/">Degree List</a></li>
+                                <li><a href="/Degrees/Create/">Create New Degree</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="has-arrow" href="#" aria-expanded="false">
+                                <i class="icon icon-app-store"></i><span class="nav-text">Trade Master</span>
+                            </a>
+                            <ul aria-expanded="false">
+                                <li><a href="/Tradetbls/Index/">Trade List</a></li>
+                                <li><a href="/Tradetbls/Create/">Create New Trade</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="has-arrow" href="#" aria-expanded="false">
+                                <i class="icon icon-app-store"></i><span class="nav-text">Program Master</span>
+                            </a>
+                            <ul aria-expanded="false">
+                                <li><a href="/ProgramTbls/Index/">Program List</a></li>
+                                <li><a href="/ProgramTbls/Create/">Create New Program</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="has-arrow" href="#" aria-expanded="false">
+                                <i class="icon icon-app-store"></i><span class="nav-text">Campus Master</span>
+                            </a>
+                            <ul aria-expanded="false">
+                                <li><a href="/CampusTbls/Index/">Campus List</a></li>
+                                <li><a href="/CampusTbls/Create/">Create New Campus</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="has-arrow" href="#" aria-expanded="false">
+                                <i class="icon icon-app-store"></i><span class="nav-text">Payments</span>
+                            </a>
+                            <ul aria-expanded="false">
+                                <li><a href="/PaymentByStudents/Index/">Payment by Student List</a></li>
+                                <li><a href="/PaymentToUniversity/Index/">Payment to University List</a></li>
+                            </ul>
+                        </li>
+
+                    }
+                    @if (Session["Usertype"].ToString() == "Institute" || Session["Usertype"].ToString() == "Admin")
+                    {
+                        <li>
+                            <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                <i class="icon icon-chart-bar-33"></i><span cla ss="nav-text">Student Form</span>
+                            </a>
+
+                            <ul aria-expanded="false">
+                                <li><a href="/StudentAdmissionForms/Index/">Student Form Application List</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                <i class="icon icon-chart-bar-33"></i><span cla ss="nav-text">Campaign Master</span>
+                            </a>
+
+                            <ul aria-expanded="false">
+                                @if (Session["Usertype"].ToString() == "Institute")
+                                {
+                                    <li><a href="/Campaign/Create/">Create Campaign</a></li>
+                                }
+                                <li><a href="/Campaign/Index/">Campaign List</a></li>
+                            </ul>
+                        </li>
+                    }
+
+                    @if (Session["Usertype"].ToString() == "Admin")
+                    {
+                        <li>
+                            <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                <i class="icon icon-world-2"></i><span class="nav-text">Application Management</span>
+                            </a>
+                            <ul aria-expanded="false">
+                            </ul>
+                        </li>
+
+                        <li class="nav-label">Forms</li>
+                        <li>
+                            <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                <i class="icon icon-form"></i><span class="nav-text">Forms</span>
+                            </a>
+                            <ul aria-expanded="false">
+                            </ul>
+                        </li>
+
+
+                        <li class="nav-label">Reporting Section</li>
+                        <li>
+                            <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                <i class="icon icon-single-copy-06"></i><span class="nav-text">Reporting</span>
+                            </a>
+                            <ul aria-expanded="false">
+                                <li><a href="~/Reports/StudentEnrolledReport/">Student Enrolled Report</a></li>
+                                <li><a href="~/Reports/UniversityReport/">University Report</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-label">Users</li>
+                        <li>
+                            <a class="has-arrow" href="#" aria-expanded="false">
+                                <i class="icon icon-app-store"></i><span class="nav-text">Users</span>
+                            </a>
+                            <ul aria-expanded="false">
+                                <li><a href="/RegisterTbls/Index/">Users List</a></li>
+                            </ul>
+                        </li>
+                    }
+                </ul>
+            </div>
+
+
+        </div>
+        <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+                <br />
+                @RenderBody()
+
+            </div>
+        </div>
+        <div class="footer">
+            <div class="copyright" style="position: absolute; bottom: 0; width: 100%;   ">
+                <p>Copyright © Designed &amp; Developed by <a href="#" target="_blank">PAF KIET</a> 2019</p>
+            </div>
+        </div>
+
+    </div>
+    <!-- Required vendors -->
+    <script src="~/theme/vendor/global/global.min.js"></script>
+    <script src="~/theme/js/custom.min.js"></script>
+
+
+    <!-- Vectormap -->
+    <script src="~/theme/vendor/raphael/raphael.min.js"></script>
+    <script src="~/theme/vendor/morris/morris.min.js"></script>
+
+
+    <script src="~/theme/vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="~/theme/vendor/gaugeJS/dist/gauge.min.js"></script>
+
+    <!-- Owl Carousel -->
+    <script src="~/theme/vendor/owl-carousel/js/owl.carousel.min.js"></script>
+
+    <!-- Counter Up -->
+    <script src="~/theme/vendor/jqvmap/js/jquery.vmap.min.js"></script>
+    <script src="~/theme/vendor/jqvmap/js/jquery.vmap.usa.js"></script>
+    <script src="~/theme/vendor/jquery.counterup/jquery.counterup.min.js"></script>
+    <script src="~/Assets/js/jquery.min.js"></script>
+    <script src="~/Assets/js/select2.min.js"></script>
+    <script src="~/theme/js/dashboard/dashboard-1.js"></script>
+    <script type='text/javascript' src="https://rawgit.com/RobinHerbots/jquery.inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        jQuery('.numbersOnly').keyup(function () {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+
+        jQuery('.alphabetsonly').keyup(function () {
+            this.value = this.value.replace(/[^a-zA-Z\s]/g, '');
+        });
+        $('.mobile').inputmask("9999-9999999");
+        $('.cnic').inputmask("99999-9999999-9");
+        $('.searchable').select2();
+
+    </script>
+
+   
+</body>
+
+</html>

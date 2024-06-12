@@ -1,0 +1,83 @@
+﻿@model IEnumerable<UniFinder.PaymentByStudent>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (TempData["lblMsg"] != null)
+{
+    <script language="javascript">
+        alert('@TempData["lblMsg"]');
+        TempData["lblMsg"] = null;
+    </script>
+}
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FormCode)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.StdID)
+            </th>*@
+        <th>
+            Aptitude Charges
+        </th>
+        <th>
+            Service Charges
+        </th>
+        <th>
+            Total Charges
+        </th>
+        <th>
+            Payment Type
+        </th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FormCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApttCharges)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServiceCharges)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentOption)
+            </td>
+            <td>
+                @if (item.Remarks == "Pending")
+                {
+                    <p style="color:deepskyblue; font-weight: bold;">Pending</p>
+                }
+                else if (item.Remarks == "Rejected")
+                {
+                    <p style="color: red; font-weight: bold;">Rejected</p>
+                }
+                else
+                {
+                    <p style="color: seagreen; font-weight: bold;">Approved</p>
+                }
+            </td>
+            <td>
+                @if (item.Remarks == "Pending")
+                {
+                    @Html.ActionLink("Approve ", "ApprovePayment", new { id = item.TransID }, new { onclick = "return confirm('Are you sure you wants to approve?');", @class = "btn btn-success", @style = "margin-right:10px;" })
+                    @Html.Label(" ") @Html.ActionLink(" Reject", "RejectPayment", new { id = item.TransID }, new { onclick = "return confirm('Are you sure you wants to reject?');", @class = "btn btn-danger" })
+                }
+            </td>
+
+        </tr>
+    }
+
+</table>

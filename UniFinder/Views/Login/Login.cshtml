@@ -1,0 +1,100 @@
+﻿@model  UniFinder.RegisterTbl
+@{
+    Layout = null;
+    ViewBag.Title = "Login";
+}
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>University Finder</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="~/Assets/images/favicon.png">
+    <link href="~/Assets/css/style.css" rel="stylesheet">
+    <link href="~/Assets/css/select2.min.css" rel="stylesheet" />
+    @if (TempData["loginError"] != null)
+    {
+        <script language="javascript">
+        alert('@TempData["loginError"]');
+            TempData["loginError"] = null;
+        </script>
+    }
+
+    @if (TempData["signupMsg"] != null)
+    {
+        <script language="javascript">
+        alert('@TempData["signupMsg"]');
+            TempData["signupMsg"] = null;
+        </script>
+    }
+</head>
+
+<body class="h-100">
+    <div class="authincation h-100">
+        <div class="container-fluid h-100">
+            <div class="row justify-content-center h-100 align-items-center">
+                <div class="col-md-6">
+                    <div class="authincation-content">
+                        <div class="row no-gutters">
+                            <div class="col-xl-12">
+                                <div class="auth-form">
+                                    <h4 class="text-center mb-4">Sign in your account</h4>
+                                    @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        @Html.ValidationSummary(true)
+                                        <div class="form-group">
+                                            <label><strong>Email</strong></label>
+                                            @Html.TextBoxFor(a => a.Email, new { @class = "form-control" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label><strong>Password</strong></label>
+                                            @Html.PasswordFor(a => a.Password, new { @class = "form-control" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label><strong>User Type</strong></label>
+                                            @Html.DropDownListFor(model => model.Qualification, (SelectList)ViewBag.list, "Please select", new { @class = "form-control searchable", @id = "ddlusertype" })
+                                        </div>
+                                        <div class="text-center">
+                                            <button type="submit" class="btn btn-primary btn-block" onclick="checkuser()">Sign in</button>
+                                        </div>
+                                    }
+                                    <div class="new-account mt-3">
+                                        <p>Don't have an account? <a class="text-primary" href="~/RegisterTbls/Create">Sign up as Student</a></p>
+                                    </div>
+                                    <div class="new-account mt-3">
+                                        <p>Don't have an account? <a class="text-primary" href="~/RegisterTbls/CreateInstitute">Sign up as an Institute</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Assets/vendor/global/global.min.js"></script>
+    <script src="~/Assets/js/quixnav-init.js"></script>
+    <script src="~/Assets/js/custom.min.js"></script>
+    <script src="~/Assets/js/jquery.min.js"></script>
+    <script src="~/Assets/js/select2.min.js"></script>
+    <script>
+        $('.searchable').select2();
+        function checkuser() {
+            debugger;
+            var usertype = $('#ddlusertype').val();
+            if (usertype) {
+                return true;
+            }
+            else {
+                alert("Please select user type");
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>

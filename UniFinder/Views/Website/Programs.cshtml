@@ -1,0 +1,91 @@
+﻿@model IEnumerable<UniFinder.ProgramTbl>
+@{
+    ViewBag.Title = "Programs";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+@if (TempData["LoginUni"] != null)
+{
+    <script language="javascript">
+        alert('@TempData["LoginUni"]');
+        TempData["LoginUni"] = null;
+    </script>
+}
+
+<section class="hero-wrap hero-wrap-2" style="background-image: url('/Assets/website_assets/images/bg_2.jpg');">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+            <div class="col-md-9 ftco-animate pb-5 text-center">
+                <p class="breadcrumbs"><span class="mr-2"><a href="#">@Session["City"] <i class="fa fa-chevron-right"></i></a></span> <span>@Session["UniName"] <i class="fa fa-chevron-right"></i></span></p>
+                <h1 class="mb-0 bread">@Session["UniName"]</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section bg-light">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+
+                <div class="col-md-6 col-lg-3 ftco-animate d-flex align-items-stretch">
+                    <div class="staff">
+                        <div class="img-wrap d-flex align-items-stretch">
+                            <div class="img align-self-stretch" style="background-image: url('@item.Picture');"></div>
+                        </div>
+                        <div class="text pt-3">
+                            <h3><a href="/StudentAdmissionForms/Create/@item.ProgramID">@item.ProgramName</a></h3>
+                            <span class="position mb-2">@item.Degree</span>
+                            <div class="faded">
+                                <p>@item.Tradetbl.TradeName</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            @*<div class="col-md-6 col-lg-3 ftco-animate d-flex align-items-stretch">
+                    <div class="staff">
+                        <div class="img-wrap d-flex align-items-stretch">
+                            <div class="img align-self-stretch" style="background-image: url(/Assets/Programs/commerce.jpeg);"></div>
+                        </div>
+                        <div class="text pt-3">
+                            <h3><a href="instructor-details.html">Business Administration</a></h3>
+                            <span class="position mb-2">Programmer</span>
+                            <div class="faded">
+                                <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 ftco-animate d-flex align-items-stretch">
+                    <div class="staff">
+                        <div class="img-wrap d-flex align-items-stretch">
+                            <div class="img align-self-stretch" style="background-image: url(/Assets/Programs/engineering.jpeg);"></div>
+                        </div>
+                        <div class="text pt-3">
+                            <h3><a href="instructor-details.html">Engineering</a></h3>
+                            <span class="position mb-2">Developer</span>
+                            <div class="faded">
+                                <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 ftco-animate d-flex align-items-stretch">
+                    <div class="staff">
+                        <div class="img-wrap d-flex align-items-stretch">
+                            <div class="img align-self-stretch" style="background-image: url(/Assets/website_assets/images/teacher-4.jpg);"></div>
+                        </div>
+                        <div class="text pt-3">
+                            <h3><a href="instructor-details.html">Medical</a></h3>
+                            <span class="position mb-2">Graphic</span>
+                            <div class="faded">
+                                <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+        </div>
+    </div>
+</section>

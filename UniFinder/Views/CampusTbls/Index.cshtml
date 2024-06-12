@@ -1,0 +1,60 @@
+﻿@model IEnumerable<UniFinder.CampusTbl>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (TempData["deletename"] != null)
+{
+    <script language="javascript">
+        alert('@TempData["deletename"]');
+        TempData["deletename"] = null;
+    </script>
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Campus Name
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            University Name
+        </th>
+        @*<th>Action</th>*@
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CampusName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UniversityTbl.UniName)
+            </td>
+            @*<td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CampusID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.CampusID },
+    new { onclick = "return confirm('Are you sure you wants to delete?');" })
+            </td>*@
+        </tr>
+    }
+
+</table>

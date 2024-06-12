@@ -1,0 +1,41 @@
+﻿@model UniFinder.Reporting
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Student Report</h2>
+<br />
+<table class="table table-hover primary-table-bordered">
+    <tr>
+        <th>
+            Total Student
+        </th>
+        <th>
+            Enrolled Student
+        </th>
+        <th>
+            Active Student
+        </th>
+        <th>
+            Inactive Student
+        </th>
+    </tr>
+    <tr>
+        <td>
+            @Model.TotalStudent
+        </td>
+        <td>
+            @Model.ActiveStudent
+        </td>
+        <td>
+            @Model.OffStudent.ToString()
+        </td>
+        <td>
+            @Model.EnrolledStudent
+        </td>
+    </tr>
+
+
+</table>

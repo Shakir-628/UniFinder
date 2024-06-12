@@ -1,0 +1,166 @@
+﻿@model UniFinder.Campaigntbl
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (TempData["campusname"] != null)
+{
+    <script language="javascript">
+        alert('@TempData["campusname"]');
+        TempData["campusname"] = null;
+    </script>
+}
+<script type="text/javascript">
+
+    function show(input) {
+        if (input.files && input.files[0]) {
+            var filerdr = new FileReader();
+            filerdr.onload = function (e) {
+                $('#user_img').attr('src', e.target.result);
+            }
+            filerdr.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+<h2>Create Campaign</h2>
+@using (Html.BeginForm("Create", "Campaign", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">        
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.CampRequestID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CampRequestID, new { htmlAttributes = new { @class = "form-control", @required = true } })
+                @Html.ValidationMessageFor(model => model.CampRequestID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("University", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("UniID", null, htmlAttributes: new { @class = "form-control searchable" })
+                @Html.ValidationMessageFor(model => model.UniID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UniDepartment, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UniDepartment, new { htmlAttributes = new { @class = "form-control", @required = true } })
+                @Html.ValidationMessageFor(model => model.UniDepartment, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Posting Date", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PostingDate, new { htmlAttributes = new { onchange = "checkPostingDate()", @class = "form-control", @type = "date", @id = "txtPostingDate", @Value = DateTime.Now.ToString("yyyy-MM-dd"), @required = true } })
+                @Html.ValidationMessageFor(model => model.PostingDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Start Date", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { onchange = "checkDate()", @class = "form-control", @type = "date", @id = "txtStartDate", @Value = DateTime.Now.ToString("yyyy-MM-dd"), @required = true } })
+                @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("End Date", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { onchange = "checkDate()", @class = "form-control", @type = "date", @id = "txtEndDate", @Value = DateTime.Now.AddDays(+1).ToString("yyyy-MM-dd"), @required = true } })
+                @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @required = true } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                <input type="file" name="ImageFile" onchange="show(this)" required>
+                @*@Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control", @type = "file", @name = "file", @onchange = "show(this)" } })
+                    @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })*@
+            </div>
+            <div class="col-md-5">
+                <img id="user_img" height="100" width="90" style="border:solid" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control", @required = true } })
+                @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-success" />
+            </div>
+        </div>
+
+        <br /><br />
+    </div>
+}
+<script type="text/javascript">
+    function checkDate() {
+        debugger;
+        var startdate = $("#txtStartDate").val();
+        var enddate = $("#txtEndDate").val();
+        console.log(startdate);
+        console.log(enddate);
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0');
+        var yyyy = today.getFullYear();
+        today = yyyy + '-' + mm + '-' + dd;
+
+        if (startdate < today) {
+            alert("The Start Date must be bigger or Equal to Today date");
+            $("#txtStartDate").val("");
+            return false;
+        }
+        else if (enddate < startdate) {
+            if (startdate == "") {
+                return true;
+            }
+            else {
+                alert("The End Date must be bigger than Start Date");
+                $("#txtStartDate").val(today);
+                $("#txtEndDate").val("");
+                return false;
+            }
+        }
+        return true;
+    }
+    function checkPostingDate() {
+        debugger;
+        var postingdate = $("#txtPostingDate").val();
+        console.log(postingdate);
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0');
+        var yyyy = today.getFullYear();
+        today = yyyy + '-' + mm + '-' + dd;
+
+        if (postingdate < today) {
+            alert("The Posting date must be equal or bigger to Today date");
+            $("#txtPostingDate").val(today);
+            return false;
+        }
+    }
+</script>

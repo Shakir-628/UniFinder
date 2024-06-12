@@ -1,0 +1,212 @@
+﻿@model UniFinder.RegisterTbl
+@{
+    Layout = null;
+    ViewBag.Title = "Login";
+}
+
+@if (TempData["signupMsg"] != null)
+{
+    <script language="javascript">
+        alert('@TempData["signupMsg"]');
+        TempData["signupMsg"] = null;
+    </script>
+}
+<script>
+    function checkDOBDate() {
+        debugger;
+        var dobdate = $("#dobId").val();
+
+        var yearlimit = "2004"
+        var yyyy = dobdate.split("-");
+        
+        if (yyyy[0] >= yearlimit) {
+            alert("Students' dates of birth should be after 2004");
+            $("#dobId").val("2000-01-01");
+            return false;
+        }
+    }
+</script>
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>University Finder</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="~/Assets/images/favicon.png">
+    <link href="~/Assets/css/style.css" rel="stylesheet">
+    <link href="~/Assets/css/select2.min.css" rel="stylesheet" />
+
+</head>
+
+<body class="h-100">
+    <div class="authincation h-100">
+        <div class="container-fluid h-100">
+            <div class="row justify-content-center h-100 align-items-center">
+                <div class="col-md-6">
+                    <div class="authincation-content">
+                        <div class="row no-gutters">
+                            <div class="col-xl-12">
+                                <div class="auth-form">
+                                    <h4 class="text-center mb-4">Sign up as a Student</h4>
+                                    @using (Html.BeginForm())
+                                    {
+                                        @Html.AntiForgeryToken()
+
+                                        <h4>Please fill below fields</h4>
+                                        <hr />
+                                        @Html.ValidationSummary(true, "", new
+                                        {
+                                            @class = "text-danger"
+                                   })
+
+                                        <div class="form-group">
+                                            <label><strong>Name</strong></label>
+                                            @Html.TextBoxFor(a => a.Name, new
+                                            {
+                                                @class = "form-control alphabetsonly",
+                                                @required = true,
+                                           @maxlength = "20",
+                                           @minlength = "6",
+                                       })
+                                        </div>
+                                        <div class="form-group">
+                                            <label><strong>Username</strong></label>
+                                            @Html.TextBoxFor(a => a.StdCode, new
+                                            {
+                                                @class = "form-control",
+                                                @required = true,
+                                           @maxlength = "20",
+                                           @minlength = "6",
+                                       })
+                                        </div>
+                                        <div class="form-group">
+                                            <label><strong>Email</strong></label>
+                                            @Html.TextBoxFor(a => a.Email, new
+                                            {
+                                                @class = "form-control",
+                                                @required = true,
+                                           @maxlength = "40",
+                                           @minlength = "6",
+                                           @type = "email"
+                                       })
+                                        </div>
+                                        <div class="form-group">
+                                            <label><strong>Password</strong></label>
+                                            @Html.PasswordFor(a => a.Password, new
+                                            {
+                                                @class = "form-control",
+                                                @required = true,
+                                           @maxlength = "20",
+                                           @minlength = "8",
+                                       })
+                                        </div>
+                                        <div class="form-group">
+                                            <label><strong>Gender</strong></label>
+                                            @Html.DropDownListFor(model => model.Gender, (SelectList)ViewBag.genderlist, "Please select", new { @class = "form-control searchable", @id = "ddlusertype" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label><strong>Address</strong></label>
+                                            @Html.TextBoxFor(a => a.Address, new
+                                            {
+                                                @class = "form-control",
+                                                @required = true,
+                                           @maxlength = "40",
+                                           @minlength = "10",
+                                       })
+                                        </div>
+                                        <div class="form-group">
+                                            <label><strong>Qualification</strong></label>
+                                            @Html.TextBoxFor(a => a.Qualification, new
+                                            {
+                                                @class = "form-control alphabetsonly",
+                                                @required = true,
+                                           @maxlength = "20",
+                                           @minlength = "4",
+                                       })
+                                        </div>
+                                        <div class="form-group">
+                                            <label><strong>DOB</strong></label>
+                                            @Html.EditorFor(a => a.DOB, new
+                                            {
+                                                htmlAttributes = new
+                                       {
+                                           onchange = "checkDOBDate()",
+                                           @class = "form-control",
+                                           @required = true,
+                                           @type = "date",
+                                           @id = "dobId",
+                                           @Value = DateTime.Now.AddYears(-21).ToString("yyyy-MM-dd")
+                                       }
+                                            })
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label><strong>CNIC</strong></label>
+                                            @Html.TextBoxFor(a => a.CNIC, new
+                                            {
+                                                @class = "form-control cnic",
+                                                @required = true,
+                                       })
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label><strong>City</strong></label>
+                                            @Html.TextBoxFor(a => a.City, new
+                                            {
+                                                @class = "form-control alphabetsonly",
+                                                @required = true,
+                                           @maxlength = "20",
+                                           @minlength = "4",
+                                       })
+                                        </div>
+                                        <div class="text-center">
+                                            <button type="submit" class="btn btn-primary btn-block" onclick="checkuser()">Submit</button>
+                                        </div>
+                                    }
+                                    <div class="new-account mt-3">
+                                        <p>Already Sign up?  <a class="text-primary" href="~/Login/Login">Sign in</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Assets/vendor/global/global.min.js"></script>
+    <script src="~/Assets/js/quixnav-init.js"></script>
+    <script src="~/Assets/js/custom.min.js"></script>
+    <script src="~/Assets/js/jquery.min.js"></script>
+    <script src="~/Assets/js/select2.min.js"></script>
+    <script type='text/javascript' src="https://rawgit.com/RobinHerbots/jquery.inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
+
+    <script>
+        function checkuser() {
+            debugger;
+            var usertype = $('#ddlusertype').val();
+            if (usertype) {
+                return true;
+            }
+            else {
+                alert("Please select user type");
+                return false;
+            }
+        }
+        jQuery('.numbersOnly').keyup(function () {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+
+        jQuery('.alphabetsonly').keyup(function () {
+            this.value = this.value.replace(/[^a-zA-Z\s]/g, '');
+        });
+
+        $('.mobile').inputmask("9999-9999999");
+        $('.cnic').inputmask("99999-9999999-9");
+    </script>
+</body>
+</html>

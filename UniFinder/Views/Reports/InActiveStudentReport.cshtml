@@ -1,0 +1,61 @@
+﻿@model IEnumerable<UniversityReport_Result>
+@{
+    ViewBag.Title = "StudentEnrolledReport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>University Report</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UniName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TradeName)
+        </th>
+        <th>
+            Degree
+        </th>
+        <th>
+            Program
+        </th>
+        <th>
+            University Creation Date
+        </th>
+        <th>
+            Campus Name
+        </th>
+        <th>Location</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UniName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TradeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Degree)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProgramName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CampusName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location1)
+            </td>
+        </tr>
+    }
+
+</table>
+

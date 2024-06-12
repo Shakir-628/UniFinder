@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>University Finder</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="~/Assets/website_assets/css/animate.css">
+    <link href="~/Assets/website_assets/css/owl.carousel.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Assets/website_assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Assets/website_assets/css/owl.theme.default.min.css">    
+    <link rel="stylesheet" href="~/Assets/website_assets/css/flaticon.css">
+    <link rel="stylesheet" href="~/Assets/website_assets/css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><span>Study</span>Lab</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    @if (Session["Usertype"] != null && Session["Usertype"].ToString() == "Student")
+                    {
+                        <li class="nav-item"><a href="~/Website/StudenApplicationFormTable" class="nav-link">Applications</a></li>
+                    }
+                    <li class="nav-item"><a href="~/Website/Index" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="~/Website/About" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="~/Website/ContactUs" class="nav-link">Contact</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link"></a></li>
+                    <li class="nav-item"><a href="#" class="nav-link"></a></li>
+                    @if (Session["Usertype"] != null && Session["Usertype"].ToString() == "Student")
+                    {
+                        <li class="nav-item"><a href="~/Login/Logout" class="nav-link">Signout</a></li>
+                    }
+                    @if (Session["Username"] == null)
+                    {
+                        <li class="nav-item"><a href="~/Login/Login" class="nav-link">Login</a></li>
+                        <li class="nav-item"><a href="~/Login/Login" class="nav-link">Sigup</a></li>
+                    }
+                    else
+                    {
+                        <li style="color:black; margin: auto; font-weight:bold; float:right;">@Session["Username"]</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- END nav -->
+    @RenderBody()
+    <footer class="ftco-footer ftco-no-pt">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-md pt-5">
+                    <div class="ftco-footer-widget pt-md-5 mb-4">
+                        <h2 class="ftco-heading-2">About</h2>
+                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                        <ul class="ftco-footer-social list-unstyled float-md-left float-lft">
+                            <li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li>
+                            <li class="ftco-animate"><a href="#"><span class="fa fa-facebook"></span></a></li>
+                            <li class="ftco-animate"><a href="#"><span class="fa fa-instagram"></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md pt-5">
+                    <div class="ftco-footer-widget pt-md-5 mb-4 ml-md-5">
+                        <h2 class="ftco-heading-2">Help Desk</h2>
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="py-2 d-block">Customer Care</a></li>
+                            <li><a href="#" class="py-2 d-block">Legal Help</a></li>
+                            <li><a href="#" class="py-2 d-block">Services</a></li>
+                            <li><a href="#" class="py-2 d-block">Privacy and Policy</a></li>
+                            <li><a href="#" class="py-2 d-block">Refund Policy</a></li>
+                            <li><a href="#" class="py-2 d-block">Call Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md pt-5">
+                    <div class="ftco-footer-widget pt-md-5 mb-4">
+                        <h2 class="ftco-heading-2">Recent Courses</h2>
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="py-2 d-block">Computer Engineering</a></li>
+                            <li><a href="#" class="py-2 d-block">Web Design</a></li>
+                            <li><a href="#" class="py-2 d-block">Business Studies</a></li>
+                            <li><a href="#" class="py-2 d-block">Civil Engineering</a></li>
+                            <li><a href="#" class="py-2 d-block">Computer Technician</a></li>
+                            <li><a href="#" class="py-2 d-block">Web Developer</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md pt-5">
+                    <div class="ftco-footer-widget pt-md-5 mb-4">
+                        <h2 class="ftco-heading-2">Have a Questions?</h2>
+                        <div class="block-23 mb-3">
+                            <ul>
+                                <li><span class="icon fa fa-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
+                                <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+2 392 3929 210</span></a></li>
+                                <li><a href="#"><span class="icon fa fa-paper-plane"></span><span class="text">info@yourdomain.com</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+
+                    <p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="#" target="_blank">PAF KIET</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <!-- loader -->
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
+
+
+    <script src="~/Assets/website_assets/js/jquery.min.js"></script>
+    <script src="~/Assets/website_assets/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="~/Assets/website_assets/js/popper.min.js"></script>
+    <script src="~/Assets/website_assets/js/bootstrap.min.js"></script>
+    <script src="~/Assets/website_assets/js/jquery.easing.1.3.js"></script>
+    <script src="~/Assets/website_assets/js/jquery.waypoints.min.js"></script>
+    <script src="~/Assets/website_assets/js/jquery.stellar.min.js"></script>
+    <script src="~/Assets/website_assets/js/owl.carousel.min.js"></script>
+    <script src="~/Assets/website_assets/js/jquery.animateNumber.min.js"></script>
+    <script src="~/Assets/website_assets/js/scrollax.min.js"></script>
+    <script src="~/Assets/website_assets/js/main.js"></script>
+    <script type='text/javascript' src="https://rawgit.com/RobinHerbots/jquery.inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
+    <script>
+        jQuery('.numbersOnly').keyup(function () {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+
+        jQuery('.alphabetsonly').keyup(function () {
+            this.value = this.value.replace(/[^a-zA-Z\s]/g, '');
+        });
+        $('.mobile').inputmask("9999-9999999");
+        $('.cnic').inputmask("99999-9999999-9");
+
+    </script>
+
+</body>
+</html>

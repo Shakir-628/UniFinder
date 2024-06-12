@@ -1,0 +1,65 @@
+﻿@model UniFinder.Reporting
+
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="main-content">
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="card">
+                <div class="stat-widget-two">
+                    <div class="stat-content">
+                        <div class="stat-text">Total Students Registered</div>
+                        <div class="stat-digit"> <i class="fa fa-ud"></i>@Model.TotalStudent</div>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success w-85" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="card">
+                <div class="stat-widget-two">
+                    <div class="stat-content">
+                        <div class="stat-text">Total Institutes</div>
+                        <div class="stat-digit"> <i class="fa fa-us"></i>@Model.ActiveStudent</div>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-primary w-15" role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="card">
+                <div class="stat-widget-two">
+                    <div class="stat-content">
+                        <div class="stat-text">Task Completed</div>
+                        <div class="stat-digit"> <i class="fa fa-us"></i> @Model.OffStudent</div>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-warning w-50" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="card">
+                <div class="stat-widget-two">
+                    <div class="stat-content">
+                        <div class="stat-text">Task Completed</div>
+                        <div class="stat-digit"> <i class="fa fa-us"></i>@Model.EnrolledStudent</div>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-danger w-65" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- /# card -->
+        </div>
+        <!-- /# column -->
+    </div>
+</div>

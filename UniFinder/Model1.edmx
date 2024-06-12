@@ -1,0 +1,1268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Uni_Find_DB_310324Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ApplicationManagement">
+          <Key>
+            <PropertyRef Name="StdID" />
+          </Key>
+          <Property Name="StdID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FormID" Type="int" />
+          <Property Name="CID" Type="int" />
+          <Property Name="ProdID" Type="int" />
+          <Property Name="UniID" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Degree" Type="varchar" MaxLength="50" />
+          <Property Name="CNIC" Type="varchar" MaxLength="50" />
+          <Property Name="Percentage" Type="int" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="CreateDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Campaigntbl">
+          <Key>
+            <PropertyRef Name="CampID" />
+          </Key>
+          <Property Name="CampID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CampRequestID" Type="varchar" MaxLength="10" />
+          <Property Name="CampSession" Type="varchar" MaxLength="10" />
+          <Property Name="UniID" Type="int" />
+          <Property Name="TradeID" Type="int" />
+          <Property Name="ProgramID" Type="int" />
+          <Property Name="SessionYear" Type="varchar" MaxLength="10" />
+          <Property Name="PostingDate" Type="datetime" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="Description" Type="varchar" MaxLength="100" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="UniDepartment" Type="varchar" MaxLength="50" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="City" Type="varchar" MaxLength="20" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="userid" Type="int" />
+        </EntityType>
+        <EntityType Name="CampusTbl">
+          <Key>
+            <PropertyRef Name="CampusID" />
+          </Key>
+          <Property Name="CampusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CampusName" Type="varchar" MaxLength="50" />
+          <Property Name="Location" Type="varchar" MaxLength="100" />
+          <Property Name="UniID" Type="int" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" />
+          <Property Name="Country" Type="varchar" MaxLength="20" />
+          <Property Name="Picture" Type="varchar" MaxLength="100" />
+          <Property Name="Stutus" Type="bit" />
+        </EntityType>
+        <EntityType Name="Degree">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FormStatus">
+          <Key>
+            <PropertyRef Name="FormID" />
+          </Key>
+          <Property Name="FormID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CID" Type="int" />
+          <Property Name="UniID" Type="int" />
+          <Property Name="FormCode" Type="varchar" MaxLength="50" />
+          <Property Name="Payment" Type="int" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="CreateDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PaymentByStudent">
+          <Key>
+            <PropertyRef Name="TransID" />
+          </Key>
+          <Property Name="TransID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StdID" Type="int" />
+          <Property Name="FormCode" Type="varchar" MaxLength="20" />
+          <Property Name="ApttCharges" Type="int" />
+          <Property Name="ServiceCharges" Type="int" />
+          <Property Name="TotalAmount" Type="int" />
+          <Property Name="PaymentOption" Type="varchar" MaxLength="10" />
+          <Property Name="Program" Type="varchar" MaxLength="50" />
+          <Property Name="Uni" Type="varchar" MaxLength="50" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="Remarks" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="PaymentToUni">
+          <Key>
+            <PropertyRef Name="UniTransID" />
+          </Key>
+          <Property Name="UniTransID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CID" Type="int" />
+          <Property Name="FormID" Type="int" />
+          <Property Name="Amount" Type="int" />
+          <Property Name="UniID" Type="int" />
+          <Property Name="PaymentOption" Type="varchar" MaxLength="10" />
+          <Property Name="CreateDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ProductTbl">
+          <Key>
+            <PropertyRef Name="ProdID" />
+          </Key>
+          <Property Name="ProdID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UniID" Type="int" />
+          <Property Name="ProductName" Type="varchar" MaxLength="50" />
+          <Property Name="Dergee" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="UpdateDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ProgramTbl">
+          <Key>
+            <PropertyRef Name="ProgramID" />
+          </Key>
+          <Property Name="ProgramID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProgramName" Type="varchar" MaxLength="50" />
+          <Property Name="Degree" Type="varchar" MaxLength="50" />
+          <Property Name="Picture" Type="varchar" MaxLength="100" />
+          <Property Name="UniID" Type="int" />
+          <Property Name="TradeID" Type="int" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="creationdate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RegisterTbl">
+          <Key>
+            <PropertyRef Name="StdID" />
+          </Key>
+          <Property Name="StdID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StdCode" Type="varchar" MaxLength="50" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="30" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Gender" Type="varchar" MaxLength="50" />
+          <Property Name="DOB" Type="datetime" />
+          <Property Name="CNIC" Type="varchar" MaxLength="50" />
+          <Property Name="Qualification" Type="varchar" MaxLength="50" />
+          <Property Name="Country" Type="varchar" MaxLength="50" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="varchar" MaxLength="50" />
+          <Property Name="Type" Type="varchar" MaxLength="15" />
+          <Property Name="Mobile" Type="nchar" MaxLength="12" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Reporting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TotalStudent" Type="int" />
+          <Property Name="EnrolledStudent" Type="int" />
+          <Property Name="ActiveStudent" Type="int" />
+          <Property Name="OffStudent" Type="int" />
+        </EntityType>
+        <EntityType Name="SaleTbl">
+          <Key>
+            <PropertyRef Name="SaleID" />
+          </Key>
+          <Property Name="SaleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SaleDate" Type="datetime" />
+          <Property Name="ApttCharges" Type="int" />
+          <Property Name="ServiceCharges" Type="int" />
+          <Property Name="TotalSale" Type="int" />
+          <Property Name="NetIncome" Type="int" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="CreateDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="StudentAdmissionForm">
+          <Key>
+            <PropertyRef Name="ApplicationID" />
+          </Key>
+          <Property Name="ApplicationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="30" />
+          <Property Name="FormID" Type="varchar" MaxLength="50" />
+          <Property Name="DOB" Type="datetime" />
+          <Property Name="CNIC" Type="varchar" MaxLength="20" />
+          <Property Name="Gender" Type="varchar" MaxLength="10" />
+          <Property Name="Policy" Type="varchar" MaxLength="500" />
+          <Property Name="Qualification" Type="varchar" MaxLength="50" />
+          <Property Name="UniID" Type="varchar" MaxLength="50" />
+          <Property Name="ProgramID" Type="varchar" MaxLength="50" />
+          <Property Name="DegreeID" Type="varchar" MaxLength="50" />
+          <Property Name="FormDate" Type="datetime" />
+          <Property Name="City" Type="varchar" MaxLength="20" />
+          <Property Name="Country" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="PaymentStatus" Type="varchar" MaxLength="10" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Tradetbl">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TradeName" Type="varchar" MaxLength="50" />
+          <Property Name="UniID" Type="int" />
+          <Property Name="Picture" Type="varchar" MaxLength="100" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="creationdate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UniversityTbl">
+          <Key>
+            <PropertyRef Name="UniID" />
+          </Key>
+          <Property Name="UniID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UniName" Type="varchar" MaxLength="100" />
+          <Property Name="Picture" Type="varchar" MaxLength="100" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ApplicationManagement_FormStatus">
+          <End Role="FormStatus" Type="Self.FormStatus" Multiplicity="0..1" />
+          <End Role="ApplicationManagement" Type="Self.ApplicationManagement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormStatus">
+              <PropertyRef Name="FormID" />
+            </Principal>
+            <Dependent Role="ApplicationManagement">
+              <PropertyRef Name="FormID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationManagement_ProductTbl">
+          <End Role="ProductTbl" Type="Self.ProductTbl" Multiplicity="0..1" />
+          <End Role="ApplicationManagement" Type="Self.ApplicationManagement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductTbl">
+              <PropertyRef Name="ProdID" />
+            </Principal>
+            <Dependent Role="ApplicationManagement">
+              <PropertyRef Name="ProdID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationManagement_UniversityTbl">
+          <End Role="UniversityTbl" Type="Self.UniversityTbl" Multiplicity="0..1" />
+          <End Role="ApplicationManagement" Type="Self.ApplicationManagement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UniversityTbl">
+              <PropertyRef Name="UniID" />
+            </Principal>
+            <Dependent Role="ApplicationManagement">
+              <PropertyRef Name="UniID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Campaigntbl_Campaigntbl">
+          <End Role="UniversityTbl" Type="Self.UniversityTbl" Multiplicity="0..1" />
+          <End Role="Campaigntbl" Type="Self.Campaigntbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UniversityTbl">
+              <PropertyRef Name="UniID" />
+            </Principal>
+            <Dependent Role="Campaigntbl">
+              <PropertyRef Name="UniID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CampusTbl_UniversityTbl">
+          <End Role="UniversityTbl" Type="Self.UniversityTbl" Multiplicity="0..1" />
+          <End Role="CampusTbl" Type="Self.CampusTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UniversityTbl">
+              <PropertyRef Name="UniID" />
+            </Principal>
+            <Dependent Role="CampusTbl">
+              <PropertyRef Name="UniID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormStatus_UniversityTbl">
+          <End Role="UniversityTbl" Type="Self.UniversityTbl" Multiplicity="0..1" />
+          <End Role="FormStatus" Type="Self.FormStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UniversityTbl">
+              <PropertyRef Name="UniID" />
+            </Principal>
+            <Dependent Role="FormStatus">
+              <PropertyRef Name="UniID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentToUni_FormStatus">
+          <End Role="FormStatus" Type="Self.FormStatus" Multiplicity="0..1" />
+          <End Role="PaymentToUni" Type="Self.PaymentToUni" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormStatus">
+              <PropertyRef Name="FormID" />
+            </Principal>
+            <Dependent Role="PaymentToUni">
+              <PropertyRef Name="FormID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentToUni_UniversityTbl">
+          <End Role="UniversityTbl" Type="Self.UniversityTbl" Multiplicity="0..1" />
+          <End Role="PaymentToUni" Type="Self.PaymentToUni" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UniversityTbl">
+              <PropertyRef Name="UniID" />
+            </Principal>
+            <Dependent Role="PaymentToUni">
+              <PropertyRef Name="UniID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductTbl_UniversityTbl">
+          <End Role="UniversityTbl" Type="Self.UniversityTbl" Multiplicity="0..1" />
+          <End Role="ProductTbl" Type="Self.ProductTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UniversityTbl">
+              <PropertyRef Name="UniID" />
+            </Principal>
+            <Dependent Role="ProductTbl">
+              <PropertyRef Name="UniID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProgramTbl_Tradetbl">
+          <End Role="Tradetbl" Type="Self.Tradetbl" Multiplicity="0..1" />
+          <End Role="ProgramTbl" Type="Self.ProgramTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tradetbl">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProgramTbl">
+              <PropertyRef Name="TradeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProgramTbl_UniversityTbl">
+          <End Role="UniversityTbl" Type="Self.UniversityTbl" Multiplicity="0..1" />
+          <End Role="ProgramTbl" Type="Self.ProgramTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UniversityTbl">
+              <PropertyRef Name="UniID" />
+            </Principal>
+            <Dependent Role="ProgramTbl">
+              <PropertyRef Name="UniID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tradetbl_UniversityTbl">
+          <End Role="UniversityTbl" Type="Self.UniversityTbl" Multiplicity="0..1" />
+          <End Role="Tradetbl" Type="Self.Tradetbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UniversityTbl">
+              <PropertyRef Name="UniID" />
+            </Principal>
+            <Dependent Role="Tradetbl">
+              <PropertyRef Name="UniID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="StudentAdmissionReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="UniversityReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="Uni_Find_DB_310324ModelStoreContainer">
+          <EntitySet Name="ApplicationManagement" EntityType="Self.ApplicationManagement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Campaigntbl" EntityType="Self.Campaigntbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CampusTbl" EntityType="Self.CampusTbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Degree" EntityType="Self.Degree" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FormStatus" EntityType="Self.FormStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentByStudent" EntityType="Self.PaymentByStudent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentToUni" EntityType="Self.PaymentToUni" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductTbl" EntityType="Self.ProductTbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProgramTbl" EntityType="Self.ProgramTbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RegisterTbl" EntityType="Self.RegisterTbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reporting" EntityType="Self.Reporting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SaleTbl" EntityType="Self.SaleTbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentAdmissionForm" EntityType="Self.StudentAdmissionForm" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tradetbl" EntityType="Self.Tradetbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UniversityTbl" EntityType="Self.UniversityTbl" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ApplicationManagement_FormStatus" Association="Self.FK_ApplicationManagement_FormStatus">
+            <End Role="FormStatus" EntitySet="FormStatus" />
+            <End Role="ApplicationManagement" EntitySet="ApplicationManagement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationManagement_ProductTbl" Association="Self.FK_ApplicationManagement_ProductTbl">
+            <End Role="ProductTbl" EntitySet="ProductTbl" />
+            <End Role="ApplicationManagement" EntitySet="ApplicationManagement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationManagement_UniversityTbl" Association="Self.FK_ApplicationManagement_UniversityTbl">
+            <End Role="UniversityTbl" EntitySet="UniversityTbl" />
+            <End Role="ApplicationManagement" EntitySet="ApplicationManagement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Campaigntbl_Campaigntbl" Association="Self.FK_Campaigntbl_Campaigntbl">
+            <End Role="UniversityTbl" EntitySet="UniversityTbl" />
+            <End Role="Campaigntbl" EntitySet="Campaigntbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CampusTbl_UniversityTbl" Association="Self.FK_CampusTbl_UniversityTbl">
+            <End Role="UniversityTbl" EntitySet="UniversityTbl" />
+            <End Role="CampusTbl" EntitySet="CampusTbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormStatus_UniversityTbl" Association="Self.FK_FormStatus_UniversityTbl">
+            <End Role="UniversityTbl" EntitySet="UniversityTbl" />
+            <End Role="FormStatus" EntitySet="FormStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentToUni_FormStatus" Association="Self.FK_PaymentToUni_FormStatus">
+            <End Role="FormStatus" EntitySet="FormStatus" />
+            <End Role="PaymentToUni" EntitySet="PaymentToUni" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentToUni_UniversityTbl" Association="Self.FK_PaymentToUni_UniversityTbl">
+            <End Role="UniversityTbl" EntitySet="UniversityTbl" />
+            <End Role="PaymentToUni" EntitySet="PaymentToUni" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductTbl_UniversityTbl" Association="Self.FK_ProductTbl_UniversityTbl">
+            <End Role="UniversityTbl" EntitySet="UniversityTbl" />
+            <End Role="ProductTbl" EntitySet="ProductTbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProgramTbl_Tradetbl" Association="Self.FK_ProgramTbl_Tradetbl">
+            <End Role="Tradetbl" EntitySet="Tradetbl" />
+            <End Role="ProgramTbl" EntitySet="ProgramTbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProgramTbl_UniversityTbl" Association="Self.FK_ProgramTbl_UniversityTbl">
+            <End Role="UniversityTbl" EntitySet="UniversityTbl" />
+            <End Role="ProgramTbl" EntitySet="ProgramTbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tradetbl_UniversityTbl" Association="Self.FK_Tradetbl_UniversityTbl">
+            <End Role="UniversityTbl" EntitySet="UniversityTbl" />
+            <End Role="Tradetbl" EntitySet="Tradetbl" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Uni_Find_DB_310324Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ApplicationManagement">
+          <Key>
+            <PropertyRef Name="StdID" />
+          </Key>
+          <Property Name="StdID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FormID" Type="Int32" />
+          <Property Name="CID" Type="Int32" />
+          <Property Name="ProdID" Type="Int32" />
+          <Property Name="UniID" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Degree" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CNIC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Percentage" Type="Int32" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="FormStatu" Relationship="Uni_Find_DB_310324Model.FK_ApplicationManagement_FormStatus" FromRole="ApplicationManagement" ToRole="FormStatu" />
+          <NavigationProperty Name="ProductTbl" Relationship="Uni_Find_DB_310324Model.FK_ApplicationManagement_ProductTbl" FromRole="ApplicationManagement" ToRole="ProductTbl" />
+          <NavigationProperty Name="UniversityTbl" Relationship="Uni_Find_DB_310324Model.FK_ApplicationManagement_UniversityTbl" FromRole="ApplicationManagement" ToRole="UniversityTbl" />
+        </EntityType>
+        <EntityType Name="FormStatu">
+          <Key>
+            <PropertyRef Name="FormID" />
+          </Key>
+          <Property Name="FormID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CID" Type="Int32" />
+          <Property Name="UniID" Type="Int32" />
+          <Property Name="FormCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Payment" Type="Int32" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ApplicationManagements" Relationship="Uni_Find_DB_310324Model.FK_ApplicationManagement_FormStatus" FromRole="FormStatu" ToRole="ApplicationManagement" />
+          <NavigationProperty Name="UniversityTbl" Relationship="Uni_Find_DB_310324Model.FK_FormStatus_UniversityTbl" FromRole="FormStatu" ToRole="UniversityTbl" />
+          <NavigationProperty Name="PaymentToUnis" Relationship="Uni_Find_DB_310324Model.FK_PaymentToUni_FormStatus" FromRole="FormStatu" ToRole="PaymentToUni" />
+        </EntityType>
+        <EntityType Name="PaymentToUni">
+          <Key>
+            <PropertyRef Name="UniTransID" />
+          </Key>
+          <Property Name="UniTransID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CID" Type="Int32" />
+          <Property Name="FormID" Type="Int32" />
+          <Property Name="Amount" Type="Int32" />
+          <Property Name="UniID" Type="Int32" />
+          <Property Name="PaymentOption" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="FormStatu" Relationship="Uni_Find_DB_310324Model.FK_PaymentToUni_FormStatus" FromRole="PaymentToUni" ToRole="FormStatu" />
+          <NavigationProperty Name="UniversityTbl" Relationship="Uni_Find_DB_310324Model.FK_PaymentToUni_UniversityTbl" FromRole="PaymentToUni" ToRole="UniversityTbl" />
+        </EntityType>
+        <EntityType Name="ProductTbl">
+          <Key>
+            <PropertyRef Name="ProdID" />
+          </Key>
+          <Property Name="ProdID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UniID" Type="Int32" />
+          <Property Name="Dergee" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ApplicationManagements" Relationship="Uni_Find_DB_310324Model.FK_ApplicationManagement_ProductTbl" FromRole="ProductTbl" ToRole="ApplicationManagement" />
+          <NavigationProperty Name="UniversityTbl" Relationship="Uni_Find_DB_310324Model.FK_ProductTbl_UniversityTbl" FromRole="ProductTbl" ToRole="UniversityTbl" />
+        </EntityType>
+        <EntityType Name="RegisterTbl">
+          <Key>
+            <PropertyRef Name="StdID" />
+          </Key>
+          <Property Name="StdID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StdCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CNIC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Qualification" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile" Type="String" MaxLength="12" FixedLength="true" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DOB" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Reporting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TotalStudent" Type="Int32" />
+          <Property Name="EnrolledStudent" Type="Int32" />
+          <Property Name="ActiveStudent" Type="Int32" />
+          <Property Name="OffStudent" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SaleTbl">
+          <Key>
+            <PropertyRef Name="SaleID" />
+          </Key>
+          <Property Name="SaleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SaleDate" Type="DateTime" Precision="3" />
+          <Property Name="ApttCharges" Type="Int32" />
+          <Property Name="ServiceCharges" Type="Int32" />
+          <Property Name="TotalSale" Type="Int32" />
+          <Property Name="NetIncome" Type="Int32" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="UniversityTbl">
+          <Key>
+            <PropertyRef Name="UniID" />
+          </Key>
+          <Property Name="UniID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UniName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ApplicationManagements" Relationship="Uni_Find_DB_310324Model.FK_ApplicationManagement_UniversityTbl" FromRole="UniversityTbl" ToRole="ApplicationManagement" />
+          <NavigationProperty Name="FormStatus" Relationship="Uni_Find_DB_310324Model.FK_FormStatus_UniversityTbl" FromRole="UniversityTbl" ToRole="FormStatu" />
+          <NavigationProperty Name="PaymentToUnis" Relationship="Uni_Find_DB_310324Model.FK_PaymentToUni_UniversityTbl" FromRole="UniversityTbl" ToRole="PaymentToUni" />
+          <NavigationProperty Name="ProductTbls" Relationship="Uni_Find_DB_310324Model.FK_ProductTbl_UniversityTbl" FromRole="UniversityTbl" ToRole="ProductTbl" />
+          <NavigationProperty Name="CampusTbls" Relationship="Uni_Find_DB_310324Model.FK_CampusTbl_UniversityTbl" FromRole="UniversityTbl" ToRole="CampusTbl" />
+          <NavigationProperty Name="Tradetbls" Relationship="Uni_Find_DB_310324Model.FK_Tradetbl_UniversityTbl" FromRole="UniversityTbl" ToRole="Tradetbl" />
+          <NavigationProperty Name="Campaigntbls" Relationship="Uni_Find_DB_310324Model.FK_Campaigntbl_Campaigntbl" FromRole="UniversityTbl" ToRole="Campaigntbl" />
+          <Property Name="Picture" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ProgramTbls" Relationship="Uni_Find_DB_310324Model.FK_ProgramTbl_UniversityTbl" FromRole="UniversityTbl" ToRole="ProgramTbl" />
+        </EntityType>
+        <EntityContainer Name="Uni_Find_DB_310324Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ApplicationManagements" EntityType="Self.ApplicationManagement" />
+          <EntitySet Name="FormStatus" EntityType="Self.FormStatu" />
+          <EntitySet Name="PaymentToUnis" EntityType="Self.PaymentToUni" />
+          <EntitySet Name="ProductTbls" EntityType="Self.ProductTbl" />
+          <EntitySet Name="RegisterTbls" EntityType="Self.RegisterTbl" />
+          <EntitySet Name="Reportings" EntityType="Self.Reporting" />
+          <EntitySet Name="SaleTbls" EntityType="Self.SaleTbl" />
+          <EntitySet Name="UniversityTbls" EntityType="Self.UniversityTbl" />
+          <AssociationSet Name="FK_ApplicationManagement_FormStatus" Association="Uni_Find_DB_310324Model.FK_ApplicationManagement_FormStatus">
+            <End Role="FormStatu" EntitySet="FormStatus" />
+            <End Role="ApplicationManagement" EntitySet="ApplicationManagements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationManagement_ProductTbl" Association="Uni_Find_DB_310324Model.FK_ApplicationManagement_ProductTbl">
+            <End Role="ProductTbl" EntitySet="ProductTbls" />
+            <End Role="ApplicationManagement" EntitySet="ApplicationManagements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationManagement_UniversityTbl" Association="Uni_Find_DB_310324Model.FK_ApplicationManagement_UniversityTbl">
+            <End Role="UniversityTbl" EntitySet="UniversityTbls" />
+            <End Role="ApplicationManagement" EntitySet="ApplicationManagements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormStatus_UniversityTbl" Association="Uni_Find_DB_310324Model.FK_FormStatus_UniversityTbl">
+            <End Role="UniversityTbl" EntitySet="UniversityTbls" />
+            <End Role="FormStatu" EntitySet="FormStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentToUni_FormStatus" Association="Uni_Find_DB_310324Model.FK_PaymentToUni_FormStatus">
+            <End Role="FormStatu" EntitySet="FormStatus" />
+            <End Role="PaymentToUni" EntitySet="PaymentToUnis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentToUni_UniversityTbl" Association="Uni_Find_DB_310324Model.FK_PaymentToUni_UniversityTbl">
+            <End Role="UniversityTbl" EntitySet="UniversityTbls" />
+            <End Role="PaymentToUni" EntitySet="PaymentToUnis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductTbl_UniversityTbl" Association="Uni_Find_DB_310324Model.FK_ProductTbl_UniversityTbl">
+            <End Role="UniversityTbl" EntitySet="UniversityTbls" />
+            <End Role="ProductTbl" EntitySet="ProductTbls" />
+          </AssociationSet>
+          <EntitySet Name="CampusTbls" EntityType="Uni_Find_DB_310324Model.CampusTbl" />
+          <EntitySet Name="ProgramTbls" EntityType="Uni_Find_DB_310324Model.ProgramTbl" />
+          <EntitySet Name="sysdiagrams" EntityType="Uni_Find_DB_310324Model.sysdiagram" />
+          <EntitySet Name="Tradetbls" EntityType="Uni_Find_DB_310324Model.Tradetbl" />
+          <AssociationSet Name="FK_CampusTbl_UniversityTbl" Association="Uni_Find_DB_310324Model.FK_CampusTbl_UniversityTbl">
+            <End Role="UniversityTbl" EntitySet="UniversityTbls" />
+            <End Role="CampusTbl" EntitySet="CampusTbls" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProgramTbl_Tradetbl" Association="Uni_Find_DB_310324Model.FK_ProgramTbl_Tradetbl">
+            <End Role="Tradetbl" EntitySet="Tradetbls" />
+            <End Role="ProgramTbl" EntitySet="ProgramTbls" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tradetbl_UniversityTbl" Association="Uni_Find_DB_310324Model.FK_Tradetbl_UniversityTbl">
+            <End Role="UniversityTbl" EntitySet="UniversityTbls" />
+            <End Role="Tradetbl" EntitySet="Tradetbls" />
+          </AssociationSet>
+          <EntitySet Name="StudentAdmissionForms" EntityType="Uni_Find_DB_310324Model.StudentAdmissionForm" />
+          <EntitySet Name="Campaigntbls" EntityType="Uni_Find_DB_310324Model.Campaigntbl" />
+          <AssociationSet Name="FK_Campaigntbl_Campaigntbl" Association="Uni_Find_DB_310324Model.FK_Campaigntbl_Campaigntbl">
+            <End Role="UniversityTbl" EntitySet="UniversityTbls" />
+            <End Role="Campaigntbl" EntitySet="Campaigntbls" />
+          </AssociationSet>
+          <EntitySet Name="Cities" EntityType="Uni_Find_DB_310324Model.City" />
+          <AssociationSet Name="FK_ProgramTbl_UniversityTbl" Association="Uni_Find_DB_310324Model.FK_ProgramTbl_UniversityTbl">
+            <End Role="UniversityTbl" EntitySet="UniversityTbls" />
+            <End Role="ProgramTbl" EntitySet="ProgramTbls" />
+          </AssociationSet>
+          <FunctionImport Name="StudentAdmissionReport" ReturnType="Collection(Uni_Find_DB_310324Model.StudentAdmissionReport_Result)" />
+          <FunctionImport Name="UniversityReport" ReturnType="Collection(Uni_Find_DB_310324Model.UniversityReport_Result)" />
+          <EntitySet Name="PaymentByStudents" EntityType="Uni_Find_DB_310324Model.PaymentByStudent" />
+          <EntitySet Name="Degrees" EntityType="Uni_Find_DB_310324Model.Degree" />
+          </EntityContainer>
+        <Association Name="FK_ApplicationManagement_FormStatus">
+          <End Type="Uni_Find_DB_310324Model.FormStatu" Role="FormStatu" Multiplicity="0..1" />
+          <End Type="Uni_Find_DB_310324Model.ApplicationManagement" Role="ApplicationManagement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormStatu">
+              <PropertyRef Name="FormID" />
+            </Principal>
+            <Dependent Role="ApplicationManagement">
+              <PropertyRef Name="FormID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationManagement_ProductTbl">
+          <End Type="Uni_Find_DB_310324Model.ProductTbl" Role="ProductTbl" Multiplicity="0..1" />
+          <End Type="Uni_Find_DB_310324Model.ApplicationManagement" Role="ApplicationManagement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductTbl">
+              <PropertyRef Name="ProdID" />
+            </Principal>
+            <Dependent Role="ApplicationManagement">
+              <PropertyRef Name="ProdID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationManagement_UniversityTbl">
+          <End Type="Uni_Find_DB_310324Model.UniversityTbl" Role="UniversityTbl" Multiplicity="0..1" />
+          <End Type="Uni_Find_DB_310324Model.ApplicationManagement" Role="ApplicationManagement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UniversityTbl">
+              <PropertyRef Name="UniID" />
+            </Principal>
+            <Dependent Role="ApplicationManagement">
+              <PropertyRef Name="UniID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormStatus_UniversityTbl">
+          <End Type="Uni_Find_DB_310324Model.UniversityTbl" Role="UniversityTbl" Multiplicity="0..1" />
+          <End Type="Uni_Find_DB_310324Model.FormStatu" Role="FormStatu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UniversityTbl">
+              <PropertyRef Name="UniID" />
+            </Principal>
+            <Dependent Role="FormStatu">
+              <PropertyRef Name="UniID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentToUni_FormStatus">
+          <End Type="Uni_Find_DB_310324Model.FormStatu" Role="FormStatu" Multiplicity="0..1" />
+          <End Type="Uni_Find_DB_310324Model.PaymentToUni" Role="PaymentToUni" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormStatu">
+              <PropertyRef Name="FormID" />
+            </Principal>
+            <Dependent Role="PaymentToUni">
+              <PropertyRef Name="FormID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentToUni_UniversityTbl">
+          <End Type="Uni_Find_DB_310324Model.UniversityTbl" Role="UniversityTbl" Multiplicity="0..1" />
+          <End Type="Uni_Find_DB_310324Model.PaymentToUni" Role="PaymentToUni" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UniversityTbl">
+              <PropertyRef Name="UniID" />
+            </Principal>
+            <Dependent Role="PaymentToUni">
+              <PropertyRef Name="UniID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductTbl_UniversityTbl">
+          <End Type="Uni_Find_DB_310324Model.UniversityTbl" Role="UniversityTbl" Multiplicity="0..1" />
+          <End Type="Uni_Find_DB_310324Model.ProductTbl" Role="ProductTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UniversityTbl">
+              <PropertyRef Name="UniID" />
+            </Principal>
+            <Dependent Role="ProductTbl">
+              <PropertyRef Name="UniID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CampusTbl">
+          <Key>
+            <PropertyRef Name="CampusID" />
+          </Key>
+          <Property Name="CampusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CampusName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UniID" Type="Int32" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="UniversityTbl" Relationship="Uni_Find_DB_310324Model.FK_CampusTbl_UniversityTbl" FromRole="CampusTbl" ToRole="UniversityTbl" />
+        </EntityType>
+        <EntityType Name="ProgramTbl">
+          <Key>
+            <PropertyRef Name="ProgramID" />
+          </Key>
+          <Property Name="ProgramID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProgramName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Degree" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TradeID" Type="Int32" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="creationdate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Tradetbl" Relationship="Uni_Find_DB_310324Model.FK_ProgramTbl_Tradetbl" FromRole="ProgramTbl" ToRole="Tradetbl" />
+          <Property Name="Picture" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UniID" Type="Int32" />
+          <NavigationProperty Name="UniversityTbl" Relationship="Uni_Find_DB_310324Model.FK_ProgramTbl_UniversityTbl" FromRole="ProgramTbl" ToRole="UniversityTbl" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Tradetbl">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TradeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="creationdate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ProgramTbls" Relationship="Uni_Find_DB_310324Model.FK_ProgramTbl_Tradetbl" FromRole="Tradetbl" ToRole="ProgramTbl" />
+          <Property Name="UniID" Type="Int32" />
+          <NavigationProperty Name="UniversityTbl" Relationship="Uni_Find_DB_310324Model.FK_Tradetbl_UniversityTbl" FromRole="Tradetbl" ToRole="UniversityTbl" />
+          <Property Name="Picture" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_CampusTbl_UniversityTbl">
+          <End Type="Uni_Find_DB_310324Model.UniversityTbl" Role="UniversityTbl" Multiplicity="0..1" />
+          <End Type="Uni_Find_DB_310324Model.CampusTbl" Role="CampusTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UniversityTbl">
+              <PropertyRef Name="UniID" />
+            </Principal>
+            <Dependent Role="CampusTbl">
+              <PropertyRef Name="UniID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProgramTbl_Tradetbl">
+          <End Type="Uni_Find_DB_310324Model.Tradetbl" Role="Tradetbl" Multiplicity="0..1" />
+          <End Type="Uni_Find_DB_310324Model.ProgramTbl" Role="ProgramTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tradetbl">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProgramTbl">
+              <PropertyRef Name="TradeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tradetbl_UniversityTbl">
+          <End Type="Uni_Find_DB_310324Model.UniversityTbl" Role="UniversityTbl" Multiplicity="0..1" />
+          <End Type="Uni_Find_DB_310324Model.Tradetbl" Role="Tradetbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UniversityTbl">
+              <PropertyRef Name="UniID" />
+            </Principal>
+            <Dependent Role="Tradetbl">
+              <PropertyRef Name="UniID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="StudentAdmissionForm">
+          <Key>
+            <PropertyRef Name="ApplicationID" />
+          </Key>
+          <Property Name="ApplicationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FormID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DOB" Type="DateTime" Precision="3" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Policy" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Qualification" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UniID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProgramID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DegreeID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FormDate" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PaymentStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CNIC" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Campaigntbl">
+          <Key>
+            <PropertyRef Name="CampID" />
+          </Key>
+          <Property Name="CampID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CampRequestID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="UniID" Type="Int32" />
+          <Property Name="PostingDate" Type="DateTime" Precision="3" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="UniDepartment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="userid" Type="Int32" />
+          <NavigationProperty Name="UniversityTbl" Relationship="Uni_Find_DB_310324Model.FK_Campaigntbl_Campaigntbl" FromRole="Campaigntbl" ToRole="UniversityTbl" />
+          <Property Name="CampSession" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TradeID" Type="Int32" />
+          <Property Name="ProgramID" Type="Int32" />
+          <Property Name="SessionYear" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_Campaigntbl_Campaigntbl">
+          <End Type="Uni_Find_DB_310324Model.UniversityTbl" Role="UniversityTbl" Multiplicity="0..1" />
+          <End Type="Uni_Find_DB_310324Model.Campaigntbl" Role="Campaigntbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UniversityTbl">
+              <PropertyRef Name="UniID" />
+            </Principal>
+            <Dependent Role="Campaigntbl">
+              <PropertyRef Name="UniID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Stutus" Type="Boolean" />
+          <Property Name="Picture" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_ProgramTbl_UniversityTbl">
+          <End Type="Uni_Find_DB_310324Model.UniversityTbl" Role="UniversityTbl" Multiplicity="0..1" />
+          <End Type="Uni_Find_DB_310324Model.ProgramTbl" Role="ProgramTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UniversityTbl">
+              <PropertyRef Name="UniID" />
+            </Principal>
+            <Dependent Role="ProgramTbl">
+              <PropertyRef Name="UniID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="StudentAdmissionReport_Result">
+          <Property Type="Int32" Name="ApplicationID" Nullable="false" />
+          <Property Type="String" Name="StudentName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CNIC" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="FormNo" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="FormDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="ApttCharges" Nullable="true" />
+          <Property Type="Int32" Name="ServiceCharges" Nullable="true" />
+          <Property Type="Int32" Name="TotalAmount" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="UniversityReport_Result">
+          <Property Type="Int32" Name="UniID" Nullable="false" />
+          <Property Type="String" Name="UniName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="TradeName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Degree" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProgramName" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CampusName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Location1" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="StudentAdmissionReport1_Result">
+          <Property Type="Int32" Name="ApplicationID" Nullable="false" />
+          <Property Type="String" Name="StudentName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CNIC" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="FormNo" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="FormDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="ApttCharges" Nullable="true" />
+          <Property Type="Int32" Name="ServiceCharges" Nullable="true" />
+          <Property Type="Int32" Name="TotalAmount" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="PaymentByStudent">
+          <Key>
+            <PropertyRef Name="TransID" />
+          </Key>
+          <Property Name="TransID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StdID" Type="Int32" />
+          <Property Name="FormCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ApttCharges" Type="Int32" />
+          <Property Name="ServiceCharges" Type="Int32" />
+          <Property Name="TotalAmount" Type="Int32" />
+          <Property Name="PaymentOption" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Program" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Uni" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="Remarks" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Degree">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Uni_Find_DB_310324ModelStoreContainer" CdmEntityContainer="Uni_Find_DB_310324Entities">
+          <EntitySetMapping Name="ApplicationManagements">
+            <EntityTypeMapping TypeName="Uni_Find_DB_310324Model.ApplicationManagement">
+              <MappingFragment StoreEntitySet="ApplicationManagement">
+                <ScalarProperty Name="StdID" ColumnName="StdID" />
+                <ScalarProperty Name="FormID" ColumnName="FormID" />
+                <ScalarProperty Name="CID" ColumnName="CID" />
+                <ScalarProperty Name="ProdID" ColumnName="ProdID" />
+                <ScalarProperty Name="UniID" ColumnName="UniID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Degree" ColumnName="Degree" />
+                <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+                <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FormStatus">
+            <EntityTypeMapping TypeName="Uni_Find_DB_310324Model.FormStatu">
+              <MappingFragment StoreEntitySet="FormStatus">
+                <ScalarProperty Name="FormID" ColumnName="FormID" />
+                <ScalarProperty Name="CID" ColumnName="CID" />
+                <ScalarProperty Name="UniID" ColumnName="UniID" />
+                <ScalarProperty Name="FormCode" ColumnName="FormCode" />
+                <ScalarProperty Name="Payment" ColumnName="Payment" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentToUnis">
+            <EntityTypeMapping TypeName="Uni_Find_DB_310324Model.PaymentToUni">
+              <MappingFragment StoreEntitySet="PaymentToUni">
+                <ScalarProperty Name="UniTransID" ColumnName="UniTransID" />
+                <ScalarProperty Name="CID" ColumnName="CID" />
+                <ScalarProperty Name="FormID" ColumnName="FormID" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="UniID" ColumnName="UniID" />
+                <ScalarProperty Name="PaymentOption" ColumnName="PaymentOption" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductTbls">
+            <EntityTypeMapping TypeName="Uni_Find_DB_310324Model.ProductTbl">
+              <MappingFragment StoreEntitySet="ProductTbl">
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProdID" ColumnName="ProdID" />
+                <ScalarProperty Name="UniID" ColumnName="UniID" />
+                <ScalarProperty Name="Dergee" ColumnName="Dergee" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegisterTbls">
+            <EntityTypeMapping TypeName="Uni_Find_DB_310324Model.RegisterTbl">
+              <MappingFragment StoreEntitySet="RegisterTbl">
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="StdID" ColumnName="StdID" />
+                <ScalarProperty Name="StdCode" ColumnName="StdCode" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reportings">
+            <EntityTypeMapping TypeName="Uni_Find_DB_310324Model.Reporting">
+              <MappingFragment StoreEntitySet="Reporting">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TotalStudent" ColumnName="TotalStudent" />
+                <ScalarProperty Name="EnrolledStudent" ColumnName="EnrolledStudent" />
+                <ScalarProperty Name="ActiveStudent" ColumnName="ActiveStudent" />
+                <ScalarProperty Name="OffStudent" ColumnName="OffStudent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SaleTbls">
+            <EntityTypeMapping TypeName="Uni_Find_DB_310324Model.SaleTbl">
+              <MappingFragment StoreEntitySet="SaleTbl">
+                <ScalarProperty Name="SaleID" ColumnName="SaleID" />
+                <ScalarProperty Name="SaleDate" ColumnName="SaleDate" />
+                <ScalarProperty Name="ApttCharges" ColumnName="ApttCharges" />
+                <ScalarProperty Name="ServiceCharges" ColumnName="ServiceCharges" />
+                <ScalarProperty Name="TotalSale" ColumnName="TotalSale" />
+                <ScalarProperty Name="NetIncome" ColumnName="NetIncome" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UniversityTbls">
+            <EntityTypeMapping TypeName="Uni_Find_DB_310324Model.UniversityTbl">
+              <MappingFragment StoreEntitySet="UniversityTbl">
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="UniID" ColumnName="UniID" />
+                <ScalarProperty Name="UniName" ColumnName="UniName" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CampusTbls">
+            <EntityTypeMapping TypeName="Uni_Find_DB_310324Model.CampusTbl">
+              <MappingFragment StoreEntitySet="CampusTbl">
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UniID" ColumnName="UniID" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="CampusName" ColumnName="CampusName" />
+                <ScalarProperty Name="CampusID" ColumnName="CampusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProgramTbls">
+            <EntityTypeMapping TypeName="Uni_Find_DB_310324Model.ProgramTbl">
+              <MappingFragment StoreEntitySet="ProgramTbl">
+                <ScalarProperty Name="UniID" ColumnName="UniID" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="creationdate" ColumnName="creationdate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="TradeID" ColumnName="TradeID" />
+                <ScalarProperty Name="Degree" ColumnName="Degree" />
+                <ScalarProperty Name="ProgramName" ColumnName="ProgramName" />
+                <ScalarProperty Name="ProgramID" ColumnName="ProgramID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Uni_Find_DB_310324Model.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tradetbls">
+            <EntityTypeMapping TypeName="Uni_Find_DB_310324Model.Tradetbl">
+              <MappingFragment StoreEntitySet="Tradetbl">
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="UniID" ColumnName="UniID" />
+                <ScalarProperty Name="creationdate" ColumnName="creationdate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="TradeName" ColumnName="TradeName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentAdmissionForms">
+            <EntityTypeMapping TypeName="Uni_Find_DB_310324Model.StudentAdmissionForm">
+              <MappingFragment StoreEntitySet="StudentAdmissionForm">
+                <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+                <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="FormDate" ColumnName="FormDate" />
+                <ScalarProperty Name="DegreeID" ColumnName="DegreeID" />
+                <ScalarProperty Name="ProgramID" ColumnName="ProgramID" />
+                <ScalarProperty Name="UniID" ColumnName="UniID" />
+                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+                <ScalarProperty Name="Policy" ColumnName="Policy" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="FormID" ColumnName="FormID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ApplicationID" ColumnName="ApplicationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Campaigntbls">
+            <EntityTypeMapping TypeName="Uni_Find_DB_310324Model.Campaigntbl">
+              <MappingFragment StoreEntitySet="Campaigntbl">
+                <ScalarProperty Name="SessionYear" ColumnName="SessionYear" />
+                <ScalarProperty Name="ProgramID" ColumnName="ProgramID" />
+                <ScalarProperty Name="TradeID" ColumnName="TradeID" />
+                <ScalarProperty Name="CampSession" ColumnName="CampSession" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UniDepartment" ColumnName="UniDepartment" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="PostingDate" ColumnName="PostingDate" />
+                <ScalarProperty Name="UniID" ColumnName="UniID" />
+                <ScalarProperty Name="CampRequestID" ColumnName="CampRequestID" />
+                <ScalarProperty Name="CampID" ColumnName="CampID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="Uni_Find_DB_310324Model.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="Stutus" ColumnName="Stutus" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="StudentAdmissionReport" FunctionName="Uni_Find_DB_310324Model.Store.StudentAdmissionReport">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Uni_Find_DB_310324Model.StudentAdmissionReport_Result">
+                <ScalarProperty Name="ApplicationID" ColumnName="ApplicationID" />
+                <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+                <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+                <ScalarProperty Name="FormNo" ColumnName="FormNo" />
+                <ScalarProperty Name="FormDate" ColumnName="FormDate" />
+                <ScalarProperty Name="ApttCharges" ColumnName="ApttCharges" />
+                <ScalarProperty Name="ServiceCharges" ColumnName="ServiceCharges" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UniversityReport" FunctionName="Uni_Find_DB_310324Model.Store.UniversityReport">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Uni_Find_DB_310324Model.UniversityReport_Result">
+                <ScalarProperty Name="UniID" ColumnName="UniID" />
+                <ScalarProperty Name="UniName" ColumnName="UniName" />
+                <ScalarProperty Name="TradeName" ColumnName="TradeName" />
+                <ScalarProperty Name="Degree" ColumnName="Degree" />
+                <ScalarProperty Name="ProgramName" ColumnName="ProgramName" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CampusName" ColumnName="CampusName" />
+                <ScalarProperty Name="Location1" ColumnName="Location1" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="PaymentByStudents">
+            <EntityTypeMapping TypeName="Uni_Find_DB_310324Model.PaymentByStudent">
+              <MappingFragment StoreEntitySet="PaymentByStudent">
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Uni" ColumnName="Uni" />
+                <ScalarProperty Name="Program" ColumnName="Program" />
+                <ScalarProperty Name="PaymentOption" ColumnName="PaymentOption" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="ServiceCharges" ColumnName="ServiceCharges" />
+                <ScalarProperty Name="ApttCharges" ColumnName="ApttCharges" />
+                <ScalarProperty Name="FormCode" ColumnName="FormCode" />
+                <ScalarProperty Name="StdID" ColumnName="StdID" />
+                <ScalarProperty Name="TransID" ColumnName="TransID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Degrees">
+            <EntityTypeMapping TypeName="Uni_Find_DB_310324Model.Degree">
+              <MappingFragment StoreEntitySet="Degree">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

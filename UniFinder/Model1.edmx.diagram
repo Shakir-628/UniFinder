@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="28ba62ee8be04ec0adb027a5dbb630c6" Name="Diagram1" ZoomLevel="94">
+        <EntityTypeShape EntityType="Uni_Find_DB_310324Model.ApplicationManagement" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Uni_Find_DB_310324Model.FormStatu" Width="1.625" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Uni_Find_DB_310324Model.PaymentToUni" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Uni_Find_DB_310324Model.ProductTbl" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Uni_Find_DB_310324Model.RegisterTbl" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Uni_Find_DB_310324Model.Reporting" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Uni_Find_DB_310324Model.SaleTbl" Width="1.5" PointX="6.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Uni_Find_DB_310324Model.UniversityTbl" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="Uni_Find_DB_310324Model.FK_ApplicationManagement_FormStatus" />
+        <AssociationConnector Association="Uni_Find_DB_310324Model.FK_ApplicationManagement_ProductTbl" />
+        <AssociationConnector Association="Uni_Find_DB_310324Model.FK_ApplicationManagement_UniversityTbl" />
+        <AssociationConnector Association="Uni_Find_DB_310324Model.FK_FormStatus_UniversityTbl" />
+        <AssociationConnector Association="Uni_Find_DB_310324Model.FK_PaymentToUni_FormStatus" />
+        <AssociationConnector Association="Uni_Find_DB_310324Model.FK_PaymentToUni_UniversityTbl" />
+        <AssociationConnector Association="Uni_Find_DB_310324Model.FK_ProductTbl_UniversityTbl" />
+        <EntityTypeShape EntityType="Uni_Find_DB_310324Model.CampusTbl" Width="1.5" PointX="11.375" PointY="1" />
+        <EntityTypeShape EntityType="Uni_Find_DB_310324Model.ProgramTbl" Width="1.5" PointX="3" PointY="9" />
+        <EntityTypeShape EntityType="Uni_Find_DB_310324Model.sysdiagram" Width="1.5" PointX="9.75" PointY="4.75" />
+        <EntityTypeShape EntityType="Uni_Find_DB_310324Model.Tradetbl" Width="1.5" PointX="0.75" PointY="9.125" />
+        <AssociationConnector Association="Uni_Find_DB_310324Model.FK_CampusTbl_UniversityTbl" />
+        <AssociationConnector Association="Uni_Find_DB_310324Model.FK_ProgramTbl_Tradetbl" />
+        <AssociationConnector Association="Uni_Find_DB_310324Model.FK_Tradetbl_UniversityTbl" />
+        <EntityTypeShape EntityType="Uni_Find_DB_310324Model.StudentAdmissionForm" Width="1.5" PointX="9.375" PointY="7.75" />
+        <EntityTypeShape EntityType="Uni_Find_DB_310324Model.Campaigntbl" Width="1.5" PointX="11" PointY="12.375" />
+        <AssociationConnector Association="Uni_Find_DB_310324Model.FK_Campaigntbl_Campaigntbl" />
+        <EntityTypeShape EntityType="Uni_Find_DB_310324Model.City" Width="1.5" PointX="11.375" PointY="7.75" />
+        <AssociationConnector Association="Uni_Find_DB_310324Model.FK_ProgramTbl_UniversityTbl" />
+        <EntityTypeShape EntityType="Uni_Find_DB_310324Model.PaymentByStudent" Width="1.5" PointX="5.375" PointY="11.75" />
+        <EntityTypeShape EntityType="Uni_Find_DB_310324Model.Degree" Width="1.5" PointX="0.75" PointY="12.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

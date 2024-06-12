@@ -1,0 +1,158 @@
+﻿@model UniFinder.ProgramTbl
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (TempData["uniname"] != null)
+{
+    <script language="javascript">
+        alert('@TempData["uniname"]');
+        TempData["uniname"] = null;
+    </script>
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm("Create", "ProgramTbls", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>ProgramTbl</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProgramName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.ProgramName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProgramName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Degree, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.DropDownListFor(model => model.Degree, (SelectList)ViewBag.DegreeData, "Please select", new { @class = "form-control searchable", @id = "ddlDegree" })
+                @*@Html.DropDownListFor(model => model.Degree, (SelectList)ViewBag.genderlist, "Please select", htmlAttributes: new { @class = "form-control searchable" })*@
+                @*@Html.EditorFor(model => model.Degree, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.ValidationMessageFor(model => model.Degree, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("University Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.DropDownList("UniID", null, htmlAttributes: new { @class = "form-control searchable", @id = "ddlUni" })
+                @Html.ValidationMessageFor(model => model.UniID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TradeID, "TradeID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @*@Html.DropDownList("TradeID", null, htmlAttributes: new { @class = "form-control searchable" })*@
+                @Html.DropDownListFor(x => x.TradeID, new List<SelectListItem>(), "--Select--", new { @id = "ddlTrade", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TradeID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Picture, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="ImageFile" required>
+                @*@Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control", @type = "file", @name = "file", @onchange = "show(this)" } })
+                    @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-6">
+                <input type="submit" value="Create" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+    <script src="~/Assets/js/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#ddlUni').change(function () {
+            $.ajax({
+                type: "post",
+                url: "/ProgramTbls/GetTrade",
+                data: { universityId: $('#ddlUni').val() },
+                datatype: "json",
+                traditional: true,
+                success: function (data) {
+                    var trade = "<select id='ddlTrade'>";
+                    trade = trade + '<option value="">--Select--</option>';
+
+                    debugger;
+                    console.log(data);
+                    for (var i = 0; i < data.length; i++) {
+                        trade = trade + '<option value=' + data[i].Value + '>' + data[i].Text + '</option>';
+                    }
+                    trade = trade + '</select>';
+                    console.log(trade);
+                    $('#ddlTrade').html(trade);
+                }
+            });
+        });
+    });
+</script>
+@*<script>
+        $(document).ready(function () {
+            LoadProduct($('#product'));
+            LoadCustomers($('#customer'));
+        });
+        var products = []
+        function LoadUniversity(element) {
+            if (products.length == 0) {
+                $.ajax({
+                    type: "GET",
+                    url: '/ProgramTbls/GetUniversity',
+                    success: function (data) {
+                        products = data;
+                        renderProduct(element);
+                    }
+                })
+            }
+            else {
+                renderProduct(element);
+            }
+        }
+        function renderProduct(element) {
+            var $ele = $(element);
+            $ele.empty();
+            $ele.append($('<option/>').val('0').text('Select'));
+            $.each(products, function (i, val) {
+                $ele.append($('<option/>').val(val.ID).text(val.Name));
+            })
+        }
+
+        $(function () {
+            $('#product').change(function () {
+                checkDuplicate($(this).val());
+                if (duplicateProd == false && $(this).val() != 0) {
+                    $.ajax({
+                        type: "POST",
+                        url: '/Quotations/getunicprice', // Url.Action()
+                        data: {
+                            productid: $(this).val()
+                        },
+                        success: function (data) {
+                            $('#unitprice').val(data.COST);
+                            $('#uom').val(data.UOM);
+                            $('#instock').val(data.InStock);
+                            $('#tax').val(data.Tax);
+                        }
+                    });
+                }
+                else {
+                    $('#unitprice').val("");
+                    $('#uom').val("");
+                    $('#instock').val("");
+                    $('#tax').val("");
+                }
+            });
+        });
+    </script>*@

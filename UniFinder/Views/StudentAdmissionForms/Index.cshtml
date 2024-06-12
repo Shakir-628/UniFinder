@@ -1,0 +1,111 @@
+﻿@model IEnumerable<UniFinder.StudentAdmissionForm>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Form ID
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DOB)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Qualification)
+            </th>
+            <th>
+                University
+            </th>
+            <th>
+                Program
+            </th>
+            <th>
+                Degree
+            </th>
+            <th>
+                Form Date
+            </th>
+            <th>Action</th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FormID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DOB, "{0:dd/MM/yyyy}")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Qualification)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UniID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProgramID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DegreeID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FormDate, "{0:dd/MM/yyyy}")
+                </td>
+                <td>
+                    @if (item.PaymentStatus == "Pending" || item.PaymentStatus == "Submitted")
+                    {
+                        @Html.ActionLink(" Approve", "Approve", new { id = item.ApplicationID }, new { onclick = "return confirm('Are you sure you wants to approve?');", @class = "btn btn-success", @style = "margin-right:10px;" })
+                        @Html.ActionLink(" Reject", "RejectForm", new { id = item.ApplicationID }, new { onclick = "return confirm('Are you sure you wants to reject?');", @class = "btn btn-danger" })
+                    }
+                </td>
+                <td>
+                    @if (item.PaymentStatus == "Pending" || item.PaymentStatus == "Submitted")
+                    {
+                        <p style="color:deepskyblue; font-weight: bold;">Pending</p>
+                    }
+                    else if (item.PaymentStatus == "Approved" || item.PaymentStatus == "Confirmed")
+                    {
+                        <p style="color: green; font-weight: bold;">Approved</p>
+                    }
+                    else
+                    {
+                        <p style="color: red; font-weight: bold;">Rejected</p>
+
+                    }
+                </td>
+
+            </tr>
+        }
+
+    </table>
+</body>
+</html>

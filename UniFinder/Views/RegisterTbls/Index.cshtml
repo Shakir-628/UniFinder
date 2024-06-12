@@ -1,0 +1,101 @@
+﻿@model IEnumerable<UniFinder.RegisterTbl>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (TempData["lblMsg"] != null)
+{
+    <script language="javascript">
+        alert('@TempData["lblMsg"]');
+        TempData["lblMsg"] = null;
+    </script>
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StdCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CNIC)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Qualification)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+
+            <th>Action</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StdCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CNIC)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Qualification)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreateDate)
+                </td>
+                <td>
+                    @if (item.Status == false)
+                    {
+                        <p style="color:deepskyblue; font-weight: bold;">Pending</p>
+                    }
+                    else
+                    {
+                        <p style="color: limegreen; font-weight: bold;">Approved</p>
+                    }
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.StdID })
+                    @if (item.Status == false)
+                    {
+                        @Html.Label(" | ") @Html.ActionLink(" Approve", "Approve", new { id = item.StdID },
+new { onclick = "return confirm('Are you sure you wants to approve?');" })
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>

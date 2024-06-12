@@ -1,0 +1,96 @@
+﻿@model IEnumerable<UniFinder.Campaigntbl>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Campaign List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Campaign Code
+        </th>
+        <th>
+            University
+        </th>
+        <th>
+            Department
+        </th>
+        <th>
+            Posting Date
+        </th>
+        <th>
+            Start Date
+        </th>
+        <th>
+            End Date
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CampRequestID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UniversityTbl.UniName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UniDepartment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostingDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                <img src="@Url.Content(item.Image)" width="80" height="80" multiple />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @if (item.Status == false)
+                {
+                    <p style="color:red; font-weight: bold;">InActive</p>
+                }
+                else
+                {
+                    <p style="color: seagreen; font-weight: bold;">Active</p>
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CampID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.CampID },
+    new { onclick = "return confirm('Are you sure you wants to delete?');" })
+            </td>
+        </tr>
+    }
+
+</table>

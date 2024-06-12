@@ -1,0 +1,64 @@
+﻿@model IEnumerable<UniFinder.PaymentToUni>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaymentOption)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FormStatu.FormCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UniversityTbl.UniName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaymentOption)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FormStatu.FormCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UniversityTbl.UniName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.UniTransID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.UniTransID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.UniTransID })
+        </td>
+    </tr>
+}
+
+</table>

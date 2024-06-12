@@ -1,0 +1,129 @@
+﻿@model IEnumerable<UniFinder.StudentAdmissionForm>
+
+@{
+    ViewBag.Title = "StudenApplicationForm";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<section class="hero-wrap hero-wrap-2" style="background-image: url('../Assets/website_assets/images/bg_2.jpg'); ">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+            <div class="col-md-9 ftco-animate pb-5 text-center">
+                <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i class="fa fa-chevron-right"></i></a></span> <span>Univerties <i class="fa fa-chevron-right"></i></span></p>
+                <h1 class="mb-0 bread">Karachi</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<br />
+<br />
+<h2>Application Status</h2>
+<section class="ftco-section">
+
+    <table class="table">
+        <tr>
+            <th>
+                Form ID
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DOB)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CNIC)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Policy)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Qualification)
+            </th>
+            <th>
+                University
+            </th>
+            <th>
+                Program
+            </th>
+            <th>
+                Degree
+            </th>
+            <th>
+                Form Date
+            </th>
+            <th>
+                Payment
+            </th>
+            <th>
+                Form Status
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FormID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Convert.ToDateTime(item.DOB).ToString("dd/MM/yyyy")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CNIC)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Policy)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Qualification)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UniID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProgramID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DegreeID)
+                </td>
+                <td>
+                    @Convert.ToDateTime(item.FormDate).ToString("dd/MM/yyyy")
+                    @*@Html.DisplayFor(modelItem => item.FormDate, "{0:dd/MM/yyyy}")*@
+                </td>
+                <td>
+                    @if (item.PaymentStatus == "Pending")
+                    {
+                        <a href="~/PaymentByStudents/Create/@item.ApplicationID" class="btn btn-success">Create</a>
+                    }
+                    else
+                    {
+                        <p style="color:deepskyblue; font-weight: bold;">Submitted</p>
+                    }
+                </td>
+                <td>
+                    @if (item.Status == false)
+                    {
+                        <p style="color:deepskyblue; font-weight: bold;">Pending</p>
+                    }
+                    else
+                    {
+                        <p style="color: limegreen; font-weight: bold; ">Approved</p>
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>
+</section>
